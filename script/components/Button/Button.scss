@@ -1,0 +1,24 @@
+.nyt-button {
+  /* Simple reset */
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+
+  color: #16a085;
+  font-family: 'NewYorkTimesFranklin';
+  font-size: 1.15rem;
+  font-weight: bold;
+
+  padding: 0.5rem 1rem;
+  margin-left: -1rem;
+
+  cursor: pointer;
+  transition: all ease 0.5s;
+  border-bottom: solid rgba(100, 100, 100, 0.25) 0.25rem;
+}
+.nyt-button:hover, .nyt-button:active {
+  border-bottom-color: rgba(100, 100, 100, 0.5);
+}

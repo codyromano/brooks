@@ -1,0 +1,13 @@
+@font-face {
+ font-family: "NewYorkTimes";
+ src: url("https://typeface.nyt.com/fonts/nyt-cheltenham-400-normal.woff");
+}
+
+@font-face {
+  font-family: "NewYorkTimesFranklin";
+  src: url("https://typeface.nyt.com/fonts/nyt-franklin-700-normal.woff");
+}
+
+h1, h2, h3, h4, h5, p {
+  font-family: NewYorkTimes;
+}

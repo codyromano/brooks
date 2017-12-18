@@ -1,0 +1,11 @@
+html {
+  --page-side-padding: 1rem;
+}
+
+.page-width-container {
+  max-width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--page-side-padding);
+  padding-right: var(--page-side-padding);
+}
