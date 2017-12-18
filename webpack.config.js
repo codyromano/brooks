@@ -1,3 +1,4 @@
+const path = require('path');
 
 module.exports = {
   entry: "./script/index.js",
@@ -5,6 +6,11 @@ module.exports = {
     path: __dirname,
     publicPath: "/public/", 
     filename: "./public/bundle.js"
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "public"),
+    compress: true,
+    port: 9000
   },
   module: {
     rules: [

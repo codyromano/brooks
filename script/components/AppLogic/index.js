@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom';
 import resolveArticleContent from '../../data/resolveArticleContent';
 import AppView from '../AppView';
 
-const introText = `Dear Kim,
-
-As a special Christmas gift, I made you this website featuring a collection of my best New York Times columns.`;
-
 /*
 Article features:
 - Title
@@ -21,6 +17,7 @@ App store state:
 - list of article ids
 - current article id (numeric)
 */
+
 export default class AppLogic extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -29,22 +26,35 @@ export default class AppLogic extends React.Component {
       articleContentResolved: false,
     };
 
+    this.mounted = false;
     this.onContinueClicked = this.onContinueClicked.bind(this);
   }
-  onContinueClicked(articleId) {
-    this.setState({
-      headerTitle: 'Next article'
-    })
+  onContinueClicked() {
+    // TODO: Update this
+    this.updateStateWithArticleContent(1);
   }
-  componentDidMount() {
-    const { articleId } = this.props.match.params;
 
+  updateStateWithArticleContent(articleId) {
     resolveArticleContent(articleId).then(content =>
       this.setState({
         articleContentResolved: true,
         ...content
       })
     );
+  }
+
+  componentDidMount() {
+    this.mounted = true;
+
+    const { articleId } = this.props.match.params || 0
+    this.updateStateWithArticleContent(articleId);
+  }
+  componentWillReceiveProps({ articleId }) {
+    console.log(articleId);
+
+    if (this.mounted) {
+      this.updateStateWithArticleContent(articleId);
+    }
   }
   render() {
     return this.state.articleContentResolved && (

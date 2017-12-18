@@ -11,31 +11,10 @@ function ajaxPromise(url, method = 'GET') {
   });
 }
 
-/*
-function handleJSONResponse(resolve, reject, request) {
-  console.log(request);
-
-  if (request.status < 200 || request.status >= 400) {
-    reject(request);
-    return false;
-  }
-  try {
-    const parsed = JSON.parse(request.responseText);
-    resolve(parsed);
-    return true;
-
-  } catch (err) {
-    reject(err);
-  }
-  return false;
-}
-*/
-
 const getJSON = url => new Promise((resolve, reject) => {
   ajaxPromise(url).then(
     response => {
       try {
-        console.log(response);
         const parsed = JSON.parse(response);
         resolve(parsed);
 
