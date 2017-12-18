@@ -1,0 +1,11 @@
+@import "../shared-styles/main.scss";
+
+.nyt-header {
+  display: block;
+  margin: $row-padding-bottom 0;
+}
+
+.nyt-title {
+  padding: 0;
+  margin: 0;
+}
