@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { render } from 'react-dom';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import resolveArticleContent from '../../data/resolveArticleContent';
 import AppView from '../AppView';
 
@@ -18,7 +19,12 @@ App store state:
 - current article id (numeric)
 */
 
-export default class AppLogic extends React.Component {
+function getArticleIdFromRouterParams(params) {
+  const { articleId } = params;
+  return articleId && parseInt(articleId) || 0;
+}
+
+class AppLogic extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -30,8 +36,11 @@ export default class AppLogic extends React.Component {
     this.onContinueClicked = this.onContinueClicked.bind(this);
   }
   onContinueClicked() {
-    // TODO: Update this
-    this.updateStateWithArticleContent(1);
+    // TODO: Check for end of articles
+    const articleId = getArticleIdFromRouterParams(this.props.match.params);
+    const nextArticleId = articleId + 1;
+
+    this.props.history.push(`/article/${nextArticleId}`);
   }
 
   updateStateWithArticleContent(articleId) {
@@ -46,11 +55,11 @@ export default class AppLogic extends React.Component {
   componentDidMount() {
     this.mounted = true;
 
-    const { articleId } = this.props.match.params || 0
+    const articleId = getArticleIdFromRouterParams(this.props.match.params);
     this.updateStateWithArticleContent(articleId);
   }
-  componentWillReceiveProps({ articleId }) {
-    console.log(articleId);
+  componentWillReceiveProps(newProps) {
+    const articleId = getArticleIdFromRouterParams(newProps.match.params);
 
     if (this.mounted) {
       this.updateStateWithArticleContent(articleId);
@@ -65,3 +74,9 @@ export default class AppLogic extends React.Component {
     );
   }
 }
+
+AppLogic.propTypes = {
+  history: PropTypes.object.isRequired
+};
+
+export default withRouter(AppLogic);

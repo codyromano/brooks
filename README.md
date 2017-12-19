@@ -16,7 +16,11 @@ npm install
 npm install -g webpack-dev-server
 webpack-dev-server --watch --progress --colors
 ```
-Then navigate to `http://localhost:9000` in your browser.
+In a separate terminal window, run:
+```
+webpack --watch
+```
+Open `http://localhost:9000`
 
 ### Production
 

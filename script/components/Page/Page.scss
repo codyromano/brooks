@@ -1,11 +1,10 @@
-html {
-  --page-side-padding: 1rem;
-}
+@import '../shared-styles/main';
 
 .page-width-container {
-  max-width: 30rem;
+  max-width: $page-width;
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--page-side-padding);
-  padding-right: var(--page-side-padding);
+  padding-left: $page-side-padding;
+  padding-right: $page-side-padding;
+  padding-bottom: $row-padding-bottom;
 }
