@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import { withRouter } from 'react-router-dom';
 import resolveArticleContent from '../../data/resolveArticleContent';
+import { scrollToTop } from '../../utils/animationUtils';
 import AppView from '../AppView';
 
 /*
@@ -41,6 +42,7 @@ class AppLogic extends React.Component {
     const nextArticleId = articleId + 1;
 
     this.props.history.push(`/article/${nextArticleId}`);
+    scrollToTop(1000);
   }
 
   updateStateWithArticleContent(articleId) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Image.scss';
 
 function preloadImage(src, callback) {
   const testImage = document.createElement('img');
@@ -32,7 +33,11 @@ export default class Image extends React.Component {
       imageStyle.opacity = 0;
     }
 
-    return (<img {...this.props} style={imageStyle} />);
+    return (<img
+      {...this.props}
+      style={imageStyle}
+      className="nyt-featured-image"
+    />);
   }
 }
 Image.defaultProps = {
