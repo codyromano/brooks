@@ -13,7 +13,7 @@ npm install
 ### Development
 
 ```
-npm install -g webpack-dev-server
+npm install -g webpack webpack-dev-server
 webpack-dev-server --watch --progress --colors
 ```
 In a separate terminal window, run:
