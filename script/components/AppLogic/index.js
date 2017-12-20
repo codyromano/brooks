@@ -35,6 +35,7 @@ class AppLogic extends React.Component {
 
     this.mounted = false;
     this.onContinueClicked = this.onContinueClicked.bind(this);
+    this.currentArticleModel = null;
   }
   onContinueClicked() {
     // TODO: Check for end of articles
@@ -46,11 +47,12 @@ class AppLogic extends React.Component {
   }
 
   updateStateWithArticleContent(articleId) {
-    resolveArticleContent(articleId).then(content =>
-      this.setState({
-        articleContentResolved: true,
-        ...content
-      })
+    resolveArticleContent(articleId).then(content => {
+        this.setState({
+          articleContentResolved: true,
+          ...content
+        });
+      }
     );
   }
 
@@ -60,8 +62,12 @@ class AppLogic extends React.Component {
     const articleId = getArticleIdFromRouterParams(this.props.match.params);
     this.updateStateWithArticleContent(articleId);
   }
+  componentWillUnmount() {
+    delete this.currentArticleModel;
+  }
   componentWillReceiveProps(newProps) {
     const articleId = getArticleIdFromRouterParams(newProps.match.params);
+    this.articleLibraryModel.markAsRead(articleId);
 
     if (this.mounted) {
       this.updateStateWithArticleContent(articleId);
@@ -78,7 +84,10 @@ class AppLogic extends React.Component {
 }
 
 AppLogic.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  articleLibraryModel: PropTypes.shape({
+    markArticleAsRead: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default withRouter(AppLogic);
