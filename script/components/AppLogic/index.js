@@ -35,7 +35,6 @@ class AppLogic extends React.Component {
 
     this.mounted = false;
     this.onContinueClicked = this.onContinueClicked.bind(this);
-    this.currentArticleModel = null;
   }
   onContinueClicked() {
     // TODO: Check for end of articles
@@ -61,13 +60,11 @@ class AppLogic extends React.Component {
 
     const articleId = getArticleIdFromRouterParams(this.props.match.params);
     this.updateStateWithArticleContent(articleId);
-  }
-  componentWillUnmount() {
-    delete this.currentArticleModel;
+    this.props.articleLibraryModel.markArticleAsRead(articleId);
   }
   componentWillReceiveProps(newProps) {
     const articleId = getArticleIdFromRouterParams(newProps.match.params);
-    this.articleLibraryModel.markAsRead(articleId);
+    newProps.articleLibraryModel.markArticleAsRead(articleId);
 
     if (this.mounted) {
       this.updateStateWithArticleContent(articleId);

@@ -7,8 +7,8 @@ const withLibraryModel = (Component) => (props) => {
   };
 
   return (<Component
-    {...modelProps}
     {...props}
+    {...modelProps}
   />);
 };
 
