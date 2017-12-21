@@ -3,10 +3,8 @@ import { render } from 'react-dom';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import AppLogic from './components/AppLogic';
 import withLibraryModel from './data/models/withLibraryModel';
-import withArticleContent from './data/models/withArticleContent';
 
 const AppLogicWithProps = withLibraryModel(AppLogic);
-
 
 const App = () => (
   <HashRouter>

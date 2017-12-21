@@ -9,6 +9,9 @@ function getArticleIdFromRouterParams(params) {
   return params.articleId && parseInt(params.articleId) || 0;
 }
 
+/**
+* Mutable component for business logic (no views)
+*/
 class AppLogic extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -33,9 +36,16 @@ class AppLogic extends React.Component {
     this.props.articleLibraryModel.markArticleAsRead(articleId);
   }
   render() {
+    const model = this.props.articleLibraryModel;
+    const articleStats = {
+      totalArticlesRead: model.getTotalArticlesRead(),
+      totalArticlesAvailable: model.getTotalArticlesAvailable()
+    };
+
     return this.props.contentDidResolve && (
       <AppView
         {...this.props}
+        articleStats={articleStats}
         onContinueClicked={this.onContinueClicked}
       />
     );
