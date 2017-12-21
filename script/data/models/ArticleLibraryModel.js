@@ -15,6 +15,13 @@ export default class ArticleLibraryModel extends BaseModel {
       articleMostRecentReadTime: null
     };
   }
+  getTotalArticlesAvailable() {
+    // TODO: Count articles
+    return 3;
+  }
+  getTotalArticlesRead() {
+    return Object.keys(this.articleFirstReadTimes).length;
+  }
   getInitialModelState() {
     const stored = super.get(ARTICLE_LIB_STORAGE_KEY);
     return stored || this.getDefaultModelState();
@@ -26,12 +33,18 @@ export default class ArticleLibraryModel extends BaseModel {
     super.set(ARTICLE_LIB_STORAGE_KEY, this);
   }
   markArticleAsRead(articleId) {
+    if (articleId === 0) {
+      return false;
+    }
+
     if (!this.isRead(articleId)) {
       const now = new Date().getTime();
       this.articleFirstReadTimes[articleId] = now;
       this.articleMostRecentReadTime = now;
 
       this.save();
+      return true;
     }
+    return false;
   }
 }

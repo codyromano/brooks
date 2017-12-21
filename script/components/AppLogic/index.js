@@ -6,33 +6,26 @@ import resolveArticleContent from '../../data/resolveArticleContent';
 import { scrollToTop } from '../../utils/animationUtils';
 import AppView from '../AppView';
 
-/*
-Article features:
-- Title
-- Image Src
-- Publication date
-- Content
-
-App store state:
-- Time since last article was opened
-- list of article ids opened
-- list of article ids
-- current article id (numeric)
-*/
-
 function getArticleIdFromRouterParams(params) {
   const { articleId } = params;
   return articleId && parseInt(articleId) || 0;
 }
 
+const initialState = {
+  articleContentResolved: false,
+  articleStats: {
+    totalArticlesAvailable: 0,
+    totalArticlesRead: 0
+  }
+};
+
 class AppLogic extends React.Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-      articleContentResolved: false,
-    };
+    const model = props.articleLibraryModel;
 
+    this.state = initialState;
     this.mounted = false;
     this.onContinueClicked = this.onContinueClicked.bind(this);
   }
@@ -46,9 +39,16 @@ class AppLogic extends React.Component {
   }
 
   updateStateWithArticleContent(articleId) {
+    const model = this.props.articleLibraryModel;
+    model.markArticleAsRead(articleId);
+
     resolveArticleContent(articleId).then(content => {
         this.setState({
           articleContentResolved: true,
+          articleStats: {
+            totalArticlesRead: model.getTotalArticlesRead(),
+            totalArticlesAvailable: model.getTotalArticlesAvailable()
+          },
           ...content
         });
       }
@@ -64,7 +64,6 @@ class AppLogic extends React.Component {
   }
   componentWillReceiveProps(newProps) {
     const articleId = getArticleIdFromRouterParams(newProps.match.params);
-    newProps.articleLibraryModel.markArticleAsRead(articleId);
 
     if (this.mounted) {
       this.updateStateWithArticleContent(articleId);

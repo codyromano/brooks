@@ -1,0 +1,36 @@
+@import '../shared-styles/main';
+
+.nyt-notice {
+  font-family: 'NewYorkTimesFranklin';
+  font-weight: lighter;
+  border-bottom: double #16a085 0.1rem;
+
+  color: #eee;
+  background-color: rgba(22, 160, 133, 1);
+
+  margin-bottom: $row-padding-bottom;
+
+  animation-name: slide-down;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+
+  display: flex;
+  align-items: center;
+  justify-content: left;
+
+  text-align: left;
+  overflow: hidden;
+  height: 0;
+}
+
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    height: 0vh;
+  }
+  100% {
+    opacity: 1;
+    height: 2.5rem;
+  }
+}
