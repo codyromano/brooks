@@ -1,6 +1,6 @@
 # Letters from David Brooks
 
-A Christmas present for my mom, who's a big fan of David Brooks. It's an simple web app that features a collection of Brooks' columns.
+A Christmas present for my mom, who's a big fan of David Brooks. It's a simple web app that features a collection of Brooks' columns.
 
 ## Get started
 
@@ -13,6 +13,7 @@ npm install
 ### Development
 
 ```
+sudo chown $USER /usr/local/bin/
 npm install -g webpack webpack-dev-server
 webpack-dev-server --watch --progress --colors
 ```
