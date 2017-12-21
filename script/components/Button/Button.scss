@@ -1,3 +1,5 @@
+@import '../shared-styles/main';
+
 .nyt-button {
   /* Simple reset */
   -webkit-appearance: none;
@@ -9,7 +11,7 @@
 
   color: #16a085;
   font-family: 'NewYorkTimesFranklin';
-  font-size: 1.15rem;
+  font-size: $font-normal;
   font-weight: bold;
 
   padding: 0.5rem 1rem;
@@ -21,4 +23,8 @@
 }
 .nyt-button:hover, .nyt-button:active {
   border-bottom-color: rgba(100, 100, 100, 0.5);
+}
+
+.nyt-button-large {
+  font-size: $font-large;
 }
