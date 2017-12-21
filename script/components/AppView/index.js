@@ -11,17 +11,19 @@ const AppView = ({
     articleId,
     headerTitle,
     articleText,
-    articleStats,
+    // articleStats,
     featuredImageSrc,
     continueButtonText,
     onContinueClicked
 }) => (
   <Page>
+    {/*
       {articleStats.totalArticlesRead > 0 && (<Notice>
         <PageWidthContainer>
           <span>You've collected {articleStats.totalArticlesRead} out of {articleStats.totalArticlesAvailable}  articles!</span>
         </PageWidthContainer>
       </Notice>)}
+    */}
 
     <Header title={headerTitle} />
     <PageWidthContainer>
@@ -37,9 +39,11 @@ const AppView = ({
 
 AppView.propTypes = {
   articleId: PropTypes.string.isRequired,
+  /*
   articleStats: PropTypes.shape({
     totalArticlesRead: PropTypes.number.isRequired
   }).isRequired,
+  */
   headerTitle: PropTypes.string.isRequired,
   featuredImageSrc: PropTypes.string.isRequired,
   articleText: PropTypes.string.isRequired,
