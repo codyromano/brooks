@@ -10,7 +10,6 @@ const CountdownView = ({ secondsLeft }) => (
     about={`A new column will arrive in ${secondsLeft} seconds.`}
   />
 );
-
 const Countdown = withCountdown(CountdownView);
 
 class SplashScreen extends React.Component {
@@ -41,5 +40,4 @@ const SplashScreenWithData = () => (
   />
 );
 
-// 1514041871809
 export default SplashScreenWithData;

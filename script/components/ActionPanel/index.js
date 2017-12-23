@@ -13,7 +13,7 @@ const ActionPanelView = ({
     <h2>{title}</h2>
     <p>{about}</p>
     {buttons.map((button, i) => (
-      <Button {...button}>
+      <Button {...button} key={i}>
         {button.text}
       </Button>
     ))}
