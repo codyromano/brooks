@@ -30,6 +30,7 @@ const TableOfContentsView = ({
 }) => {
   const completion = Math.round((totalArticlesRead / contents.length) * 100);
 
+  // TODO: It's inefficient to do all this iteration inside a render method.
   const visibleArticles = contents.slice(0, totalArticlesVisible);
 
   const readArticles = visibleArticles.filter(
@@ -62,15 +63,10 @@ const TableOfContentsView = ({
     <PageWidthContainer>
       {unreadArticles.length > 0 && <h2>Unread</h2>}
       {unreadArticles.length > 0 && <ArticleList articles={unreadArticles} />}
-
-      {!unreadArticles.length &&
-        <ActionPanel />
-      }
+      {!unreadArticles.length && <ActionPanel /> }
 
       {readArticles.length > 0 && (<h2>Read</h2>)}
       {readArticles.length > 0 && <ArticleList articles={readArticles} />}
-      
-
     </PageWidthContainer>
   </Page>);
 };

@@ -1,15 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SplashScreenView from './SplashScreenView';
+import withCountdown from '../withCountdown';
 
-export default class SplashScreen extends React.Component {
+const CountdownView = ({ secondsLeft }) => (
+  <SplashScreenView
+    title="David is writing..."
+    about={`A new column will arrive in ${secondsLeft} seconds.`}
+    backgroundImageSrc="./images/paperplane.gif"
+  />
+);
+
+const Countdown = withCountdown(CountdownView);
+
+class SplashScreen extends React.Component {
   render() {
     return (
-      <SplashScreenView
-        title="David is writing..."
-        about="A new column will arrive in 5 minutes."
-        backgroundImageSrc="./images/paperplane.gif"
-      />
+      <Countdown targetTime={1514051871809} />
     );
   }
 }
+
+// 1514041871809
+export default SplashScreen;

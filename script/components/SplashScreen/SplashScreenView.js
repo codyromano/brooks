@@ -16,7 +16,6 @@ const SplashScreenView = ({
         src={backgroundImageSrc}
         className="splash-screen-image"
       />}
-
       <PageWidthContainer>
         <div className="splash-screen-content">
           {title && <h1>{title}</h1>}

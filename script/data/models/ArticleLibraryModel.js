@@ -13,7 +13,7 @@ export default class ArticleLibraryModel extends BaseModel {
       articleFirstReadTimes: {},
       // Time when the most recent article was initially read
       articleMostRecentReadTime: null,
-      articlesVisible: 3
+      articlesVisible: 4
     };
   }
   getTotalArticlesVisible() {
