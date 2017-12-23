@@ -39,10 +39,6 @@ const AppView = ({
 AppView.propTypes = {
   id: PropTypes.number.isRequired,
   nextArticleId: PropTypes.number,
-  articleStats: PropTypes.shape({
-    totalArticlesRead: PropTypes.number.isRequired,
-    totalArticlesAvailable: PropTypes.number.isRequired,
-  }).isRequired,
   title: PropTypes.string.isRequired,
   featuredImageSrc: PropTypes.string.isRequired,
   content: PropTypes.string.isRequired,

@@ -36,15 +36,10 @@ class AppLogic extends React.Component {
   }
   render() {
     const model = this.props.articleLibraryModel;
-    const articleStats = {
-      totalArticlesRead: model.getTotalArticlesRead(),
-      totalArticlesAvailable: model.getTotalArticlesAvailable()
-    };
 
     return (
       <AppView
         {...this.props}
-        articleStats={articleStats}
         onContinueClicked={this.onContinueClicked}
       />
     );

@@ -15,9 +15,8 @@ export default class ArticleLibraryModel extends BaseModel {
       articleMostRecentReadTime: null
     };
   }
-  getTotalArticlesAvailable() {
-    // TODO: Count articles
-    return 3;
+  getArticlesReadMap() {
+    return this.articleFirstReadTimes;
   }
   getTotalArticlesRead() {
     return Object.keys(this.articleFirstReadTimes).length;
