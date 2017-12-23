@@ -42,7 +42,12 @@ const TableOfContentsView = ({
         <h2 className="nyt-progress-header">
           <strong>Reward progress: {completion}%</strong>
         </h2>
-        <progress min={0} max={100} value={completion} style={{width: '100%'}}/>
+        <progress
+          min={0}
+          max={100}
+          value={completion}
+          style={{width: '100%'}}
+        />
         <p className="nyt-progress-description">
           You've read {totalArticlesRead} of {contents.length} letters.
          Read them all to unlock a reward.</p>
