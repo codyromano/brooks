@@ -1,6 +1,11 @@
 @import './manifest';
 @import './reset';
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @font-face {
  font-family: "NewYorkTimes";
  src: url("https://typeface.nyt.com/fonts/nyt-cheltenham-400-normal.woff");
