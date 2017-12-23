@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { render } from 'react-dom';
 import withArticleContent from '../../data/models/withArticleContent';
-import resolveArticleContent from '../../data/resolveArticleContent';
 import AppView from '../AppView';
 
 function getArticleIdFromRouterParams(params) {
@@ -42,7 +41,7 @@ class AppLogic extends React.Component {
       totalArticlesAvailable: model.getTotalArticlesAvailable()
     };
 
-    return this.props.contentDidResolve && (
+    return (
       <AppView
         {...this.props}
         articleStats={articleStats}
@@ -52,12 +51,16 @@ class AppLogic extends React.Component {
   }
 }
 
+AppLogic.defaultProps = {
+  continueButtonText: 'Continue reading'
+};
+
 AppLogic.propTypes = {
-  articleId: PropTypes.string.isRequired,
-  headerTitle: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
   featuredImageSrc: PropTypes.string.isRequired,
-  continueButtonText: PropTypes.string.isRequired,
-  articleText: PropTypes.string.isRequired,
+  continueButtonText: PropTypes.string,
+  content: PropTypes.string.isRequired,
 
   articleLibraryModel: PropTypes.shape({
     markArticleAsRead: PropTypes.func.isRequired

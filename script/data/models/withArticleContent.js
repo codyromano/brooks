@@ -1,78 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import BrooksDataProvider from '../../components/BrooksDataProvider';
 import { withRouter } from 'react-router-dom';
-import resolveArticleContent from '../resolveArticleContent';
+import LoadingComponent from '../../components/ArticleLoading';
+
+const LoadingErrorComponent = () => (
+  <div>Whoops...there was a problem loading the article.
+    Please try again. If the problem persists, let me know. :)</div>
+);
 
 /**
 * HOC that injects article content
 */
-export default function withArticleContent(Component) {
+const withArticleContent = (Component) => {
+  // TODO: Move endpoint into common config file
+  const WrappedWithArticle = (props) => {
+    const articleId = props.match.params.articleId;
 
-  class WrappedWithArticle extends React.Component {
-    static getArticleIdFromRouterParams(params) {
-      return params && params.articleId && parseInt(articleId) || 0; 
-    }
-
-    constructor(props, context) {
-      super(props, context);
-
-      this.state = {
-        contentDidResolve: false
-      };
-      this.mounted = false;
-    }
-
-    updateStateWithArticleContent(articleId) {
-      resolveArticleContent(articleId).then(content =>
-        this.setState({
-          contentDidResolve: true,
-          ...content
-        })
-      );
-    }
-
-    componentDidMount() {
-      this.mounted = true;
-
-      this.updateStateWithArticleContent(
-        this.props.match.params.articleId
-      );
-    }
-
-    componentWillReceiveProps(newProps) {
-      if (this.mounted) {
-        this.setState({
-          contentDidResolve: false
-        });
-        this.updateStateWithArticleContent(
-          newProps.match.params.articleId
-        );
-      }
-    }
-
-    render() {
-      const Loading = this.props.LoadingComponent;
-
-      if (!this.state.contentDidResolve) {
-        return Loading;
-      }
-      return (
-        <Component
-          {...this.props}
-          {...this.state}
-        />
-      );
-    }
-  }
-
-  WrappedWithArticle.defaultProps = {
-    LoadingComponent: <div></div>
+    // TODO: Create a fun and engaging between-articles loading experience?
+    return (
+      <BrooksDataProvider
+        endpoint={`http://localhost:9980/article/id/${articleId}`}
+        loadingErrorComponent={LoadingErrorComponent}
+        onDataReadyComponent={Component}
+        {...props}
+      />
+    );
   };
 
   WrappedWithArticle.propTypes = {
-    match: PropTypes.object.isRequired,
-    LoadingComponent: PropTypes.element
+    match: PropTypes.object.isRequired
   };
 
   return withRouter(WrappedWithArticle);
-}
+};
+
+export default withArticleContent;

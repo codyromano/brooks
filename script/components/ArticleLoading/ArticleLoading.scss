@@ -1,0 +1,17 @@
+.article-loading {
+  background-color: rgb(44, 10, 51);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  align-content: center;
+  justify-content: center;
+}
+
+.article-loading-graphic {
+  width: 33vw;
+  height: 33vw;
+  align-self: center;
+}

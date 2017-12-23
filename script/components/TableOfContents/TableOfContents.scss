@@ -1,0 +1,11 @@
+@import '../shared-styles/main';
+
+.nyt-table, .nyt-table-item {
+  padding: 0;
+  margin: 0;
+}
+
+.nyt-table-item {
+  list-style: none;
+  padding-bottom: $row-padding-bottom;
+}

@@ -9,17 +9,19 @@
   user-select: none;
   -webkit-user-select: none;
 
+  background-color: transparent;
   color: #16a085;
+
   font-family: 'NewYorkTimesFranklin';
   font-size: $font-normal;
   font-weight: bold;
 
-  padding: 0.5rem 1rem;
-  margin-left: -1rem;
+  padding: 0.5rem 0;
 
   cursor: pointer;
   transition: all ease 0.5s;
-  border-bottom: solid rgba(100, 100, 100, 0.25) 0.25rem;
+  border: none;
+  border-bottom: solid rgba(100, 100, 100, 0.15) 0.25rem;
 }
 .nyt-button:hover, .nyt-button:active {
   border-bottom-color: rgba(100, 100, 100, 0.5);

@@ -8,8 +8,6 @@
   color: #eee;
   background-color: rgba(22, 160, 133, 1);
 
-  margin-bottom: $row-padding-bottom;
-
   animation-name: slide-down;
   animation-duration: 1s;
   animation-timing-function: ease;
@@ -22,6 +20,10 @@
   text-align: left;
   overflow: hidden;
   height: 0;
+
+  .nyt-button {
+    color: #fff;
+  }
 }
 
 @keyframes slide-down {

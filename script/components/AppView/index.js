@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
 import Header from '../Header';
+import Footer from '../Footer';
 import Article from '../Article';
 import Button from '../Button';
 import Image from '../Image';
@@ -12,42 +14,44 @@ import Page, { PageWidthContainer } from '../Page';
 * Immutable top-level component. For view only
 */
 const AppView = ({
-    articleId,
-    headerTitle,
-    articleText,
+    id,
+    title,
+    content,
     articleStats,
     featuredImageSrc,
     continueButtonText,
-    onContinueClicked
+    onContinueClicked,
+    nextArticleId
 }) => (
   <Page>
-    {articleStats.totalArticlesRead > 0 && (<Notice>
+    <Notice>
       <PageWidthContainer>
-        <span>You've collected {articleStats.totalArticlesRead} out of {articleStats.totalArticlesAvailable}  articles!</span>
+        <span>You've discovered {articleStats.totalArticlesRead} out of {articleStats.totalArticlesAvailable}  articles!</span>
       </PageWidthContainer>
-    </Notice>)}
+    </Notice>
 
-    <Header title={headerTitle} />
+    <Header title={title} />
     <PageWidthContainer>
       <Image src={featuredImageSrc}/>
-
-      <Article content={articleText} />
-      <Button onClick={onContinueClicked}>
-        {continueButtonText}
-      </Button>
+      <Article content={content} />
     </PageWidthContainer>
+
+    <Footer
+      nextArticleId={nextArticleId}
+    />
   </Page>
 );
 
 AppView.propTypes = {
-  articleId: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  nextArticleId: PropTypes.number,
   articleStats: PropTypes.shape({
     totalArticlesRead: PropTypes.number.isRequired,
     totalArticlesAvailable: PropTypes.number.isRequired,
   }).isRequired,
-  headerTitle: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   featuredImageSrc: PropTypes.string.isRequired,
-  articleText: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired,
   continueButtonText: PropTypes.string.isRequired,
 
   onContinueClicked: PropTypes.func.isRequired

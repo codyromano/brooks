@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 export default class BrooksDataProvider extends React.Component {
   static defaultProps = {
     loadingErrorComponent: () => (<div>Error loading data</div>),
-    loadingComponent: () => (<div>Loading</div>)
+    loadingComponent: () => (<div></div>),
+    mockDelayOnDataReady: 0
   };
 
   static propTypes = {
@@ -14,7 +15,8 @@ export default class BrooksDataProvider extends React.Component {
       PropTypes.func.isRequired
     ]).isRequired,
     loadingErrorComponent: PropTypes.func,
-    loadingComponent: PropTypes.func
+    loadingComponent: PropTypes.func,
+    mockDelayOnDataReady: PropTypes.number
   };
 
   constructor(props, context) {
@@ -26,9 +28,9 @@ export default class BrooksDataProvider extends React.Component {
     this.fetch = this.fetch.bind(this);
   }
 
-  fetch() {
+  fetch(endpoint) {
     // TODO: Use async / await (requires Babel changes)
-    window.fetch(this.props.endpoint).then(response => {
+    window.fetch(endpoint).then(response => {
       return response.json();
 
     }, networkError => {
@@ -37,10 +39,13 @@ export default class BrooksDataProvider extends React.Component {
       });
 
     }).then(json => {
-      this.setState({
-        data: json,
-        errorMessage: null
-      });
+
+      window.setTimeout(() => {
+        this.setState({
+          data: json,
+          errorMessage: null
+        });
+      }, this.props.mockDelayOnDataReady);
 
     }, jsonParseError => {
       this.setState({
@@ -48,8 +53,22 @@ export default class BrooksDataProvider extends React.Component {
       });
     });
   }
+  componentWillReceiveProps(newProps) {
+    if (this.mounted) {
+      if (newProps.endpoint !== this.props.endpoint) {
+        this.setState({
+          data: null
+        });
+        this.fetch(newProps.endpoint);
+      }
+    }
+  }
+  componentWillUnmount() {
+    this.mounted = false;
+  }
   componentDidMount() {
-    this.fetch();
+    this.mounted = true;
+    this.fetch(this.props.endpoint);
   }
   render() {
     if (this.state.errorMessage) {
@@ -67,7 +86,7 @@ export default class BrooksDataProvider extends React.Component {
       return (
         <Component
           {...this.props}
-          refetch={this.fetch}
+          refetch={this.fetch.bind(this, this.props.endpoint)}
           {...this.state.data}
         />
       );

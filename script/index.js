@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { render } from 'react-dom';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route, Link } from 'react-router-dom';
 import AppLogic from './components/AppLogic';
+import IntroPage from './components/Intro';
 import TableOfContents from './components/TableOfContents';
 import withLibraryModel from './data/models/withLibraryModel';
 
+
+// TODO: Rename 'AppLogic' to 'ArticleLogic'
 const AppLogicWithProps = withLibraryModel(AppLogic);
 
 const App = () => (
@@ -21,7 +24,7 @@ const App = () => (
         exact={true}
         component={TableOfContents}
       />
-      <Route path="/" component={AppLogicWithProps} />
+      <Route path="/" component={IntroPage} />
     </Switch>
   </HashRouter>
 );
