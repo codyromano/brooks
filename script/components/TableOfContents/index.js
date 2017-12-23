@@ -53,8 +53,9 @@ const TableOfContentsView = ({
       <h2>Unread</h2>
       <ArticleList articles={unreadArticles} />
 
-      <h2>Read</h2>
-      <ArticleList articles={readArticles} />
+      {readArticles.length > 0 && (<h2>Read</h2>)}
+      {readArticles.length > 0 && <ArticleList articles={readArticles} />}
+      
 
     </PageWidthContainer>
   </Page>);
