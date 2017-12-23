@@ -4,6 +4,7 @@ import SplashScreenView from './SplashScreenView';
 import withCountdown from '../withCountdown';
 import Button from '../Button';
 import { withRouter, Link } from 'react-router-dom';
+import { getEndpoint } from '../../utils/pathUtils';
 import withLibraryModel, { articleLibraryModelShape } from '../../data/models/withLibraryModel';
 import BrooksDataProvider from '../BrooksDataProvider';
 
@@ -95,7 +96,7 @@ const SplashScreenWithRouter = withRouter(SplashScreenWithLibrary);
 
 const SplashScreenWithData = () => (
   <BrooksDataProvider
-    endpoint="http://localhost:9980/table-of-contents"
+    endpoint={getEndpoint('table-of-contents')}
     onDataReadyComponent={SplashScreenWithRouter}
   />
 );

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BrooksDataProvider from '../../components/BrooksDataProvider';
+import { getEndpoint } from '../../utils/pathUtils';
 import { withRouter } from 'react-router-dom';
 import LoadingComponent from '../../components/ArticleLoading';
 
@@ -14,13 +15,16 @@ const LoadingErrorComponent = () => (
 */
 const withArticleContent = (Component) => {
   // TODO: Move endpoint into common config file
+
   const WrappedWithArticle = (props) => {
     const articleId = props.match.params.articleId;
+    const endpoint = getEndpoint('get-article-by-id', { id: articleId });
+    console.log(endpoint);
 
     // TODO: Create a fun and engaging between-articles loading experience?
     return (
       <BrooksDataProvider
-        endpoint={`http://localhost:9980/article/id/${articleId}`}
+        endpoint={endpoint}
         loadingErrorComponent={LoadingErrorComponent}
         onDataReadyComponent={Component}
         {...props}
