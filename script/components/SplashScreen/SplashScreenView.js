@@ -7,7 +7,8 @@ import './SplashScreenView.scss';
 const SplashScreenView = ({
   title,
   about,
-  backgroundImageSrc
+  backgroundImageSrc,
+  children
 }) => {
   return (
     <div className="splash-screen">
@@ -18,12 +19,18 @@ const SplashScreenView = ({
 
       <PageWidthContainer>
         <div className="splash-screen-content">
-          <h1>{title}</h1>
-          <p>{about}</p>
+          {title && <h1>{title}</h1>}
+          {about && <p>{about}</p>}
+
+          {children}
         </div>
       </PageWidthContainer>
     </div>
   );
+};
+
+SplashScreenView.defaultProps = {
+  backgroundImageSrc: './images/paperplane.gif'
 };
 
 SplashScreenView.propTypes = {

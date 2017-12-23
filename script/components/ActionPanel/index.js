@@ -22,11 +22,14 @@ const ActionPanelView = ({
 
 const content = {
   title: `You're out of letters!`,
-  about: `But don't worry. You can request more.`,
+  about: ``,
   buttons: [
     {
       text: 'Ask David to write a letter',
-      onClick: () => console.log('click'),
+      onClick: () => {
+        // TODO: Use router
+        window.location.hash = 'writing/foo';
+      },
       priority: 'high'
     }
   ]

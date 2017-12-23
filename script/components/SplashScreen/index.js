@@ -8,7 +8,7 @@ export default class SplashScreen extends React.Component {
       <SplashScreenView
         title="David is writing..."
         about="A new column will arrive in 5 minutes."
-        backgroundImageSrc="https://cdn.dribbble.com/users/637492/screenshots/2487758/paperplane.gif"
+        backgroundImageSrc="./images/paperplane.gif"
       />
     );
   }
