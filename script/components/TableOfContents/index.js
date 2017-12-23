@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import BrooksDataProvider from '../BrooksDataProvider';
 import Button from '../Button';
@@ -22,15 +23,18 @@ const ArticleList = ({ articles }) => {
 
 const TableOfContentsView = ({
   totalArticlesRead,
+  totalArticlesVisible,
   articlesReadMap,
   contents
 }) => {
   const completion = Math.round((totalArticlesRead / contents.length) * 100);
 
-  const readArticles = contents.filter(
+  const visibleArticles = contents.slice(0, totalArticlesVisible);
+
+  const readArticles = visibleArticles.filter(
     article => articlesReadMap[article.id]
   );
-  const unreadArticles = contents.filter(
+  const unreadArticles = visibleArticles.filter(
     article => !articlesReadMap[article.id]
   );
 
@@ -50,7 +54,7 @@ const TableOfContentsView = ({
         />
         <p className="nyt-progress-description">
           You've read {totalArticlesRead} of {contents.length} letters.
-         Read them all to unlock a reward.</p>
+         Discover them all to unlock a reward.</p>
       </PageWidthContainer>
     </Notice>
 
@@ -66,10 +70,15 @@ const TableOfContentsView = ({
   </Page>);
 };
 
+TableOfContentsView.propTypes = {
+  totalArticlesVisible: PropTypes.number.isRequired
+};
+
 const TableOfContents = ({ articleLibraryModel }) => (
   <BrooksDataProvider
     endpoint="http://localhost:9980/table-of-contents"
     onDataReadyComponent={TableOfContentsView}
+    totalArticlesVisible={articleLibraryModel.getTotalArticlesVisible()}
     totalArticlesRead={articleLibraryModel.getTotalArticlesRead()}
     articlesReadMap={articleLibraryModel.getArticlesReadMap()}
   />

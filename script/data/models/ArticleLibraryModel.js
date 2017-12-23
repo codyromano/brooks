@@ -12,8 +12,22 @@ export default class ArticleLibraryModel extends BaseModel {
       // Maps article id to timestamp when article was first read
       articleFirstReadTimes: {},
       // Time when the most recent article was initially read
-      articleMostRecentReadTime: null
+      articleMostRecentReadTime: null,
+      articlesVisible: 3
     };
+  }
+  getTotalArticlesVisible() {
+    return this.articlesVisible;
+  }
+  increaseTotalArticlesVisible(totalAvailable) {
+    if (totalAvailable) {
+      const newAmount = Math.min(totalAvailable, this.articlesVisible + 1);
+      this.articlesVisible = newAmount;
+      this.save();
+
+      return true;
+    }
+    return false;
   }
   getArticlesReadMap() {
     return this.articleFirstReadTimes;
