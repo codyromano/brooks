@@ -13,7 +13,7 @@ const ActionPanelView = ({
     <h2>{title}</h2>
     <p>{about}</p>
     {buttons.map((button, i) => (
-      <Button key={i} onClick={button.onClick}>
+      <Button {...button}>
         {button.text}
       </Button>
     ))}
@@ -26,7 +26,8 @@ const content = {
   buttons: [
     {
       text: 'Ask David to write a letter',
-      onClick: () => console.log('click')
+      onClick: () => console.log('click'),
+      priority: 'high'
     }
   ]
 };

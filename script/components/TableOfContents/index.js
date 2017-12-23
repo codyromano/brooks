@@ -55,7 +55,7 @@ const TableOfContentsView = ({
         />
         <p className="nyt-progress-description">
           You've read {totalArticlesRead} of {contents.length} letters.
-         Discover them all to unlock a reward.</p>
+         Read them all to unlock a reward.</p>
       </PageWidthContainer>
     </Notice>
 

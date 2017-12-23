@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Button.scss';
 
-const getClassName = ({ size = 'normal' }) =>
-  `nyt-button nyt-button-${size}`;
+const getClassName = ({
+  size = 'normal',
+  priority = 'normal'
+}) => `nyt-button nyt-button-priority-${priority} $nyt-button-${size}`;
 
 const Button = (props) => (
   <button
@@ -13,7 +15,12 @@ const Button = (props) => (
   >{props.children}</button>
 );
 
+Button.defaultProps = {
+  priority: 'normal'
+};
+
 Button.propTypes = {
+  highPriority: PropTypes.oneOf(['normal', 'high']),
   size: PropTypes.oneOf(['small', 'normal', 'large'])
 };
 

@@ -30,3 +30,9 @@
 .nyt-button-large {
   font-size: $font-large;
 }
+
+.nyt-button-priority-high {
+  background-color: $color-accent;
+  color: #fff;
+  padding: $column-padding / 2;
+}
