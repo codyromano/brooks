@@ -13,15 +13,39 @@ export default class ArticleLibraryModel extends BaseModel {
       articleFirstReadTimes: {},
       // Time when the most recent article was initially read
       articleMostRecentReadTime: null,
-      articlesVisible: 4
+      articlesVisible: 3,
+      timeWhenArticleReady: null 
     };
+  }
+  getTimeArticleReady() {
+    return this.timeWhenArticleReady;
+  }
+  requestNewArticle() {
+    // TODO: Experiment with different timing function
+    const millisecondsFromNow = this.getTotalArticlesVisible() * 2 * 1000;
+    this.timeWhenArticleReady = new Date().getTime() + millisecondsFromNow;
+    this.save();
+
+    return true;
+  }
+  isWritingInProgress() {
+    return Number.isInteger(this.timeWhenArticleReady) &&
+      this.timeWhenArticleReady > new Date().getTime();
   }
   getTotalArticlesVisible() {
     return this.articlesVisible;
   }
   increaseTotalArticlesVisible(totalAvailable) {
+    // Unlock a random number of articles just to keep things interesting
+    const extraArticles = Math.round(
+      Math.max(1, Math.random() * 3)
+    );
+
     if (totalAvailable) {
-      const newAmount = Math.min(totalAvailable, this.articlesVisible + 1);
+      const newAmount = Math.min(
+        totalAvailable,
+        this.articlesVisible + extraArticles
+      );
       this.articlesVisible = newAmount;
       this.save();
 

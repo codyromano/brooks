@@ -10,12 +10,12 @@ import Page, { PageWidthContainer } from '../Page';
 import withLibraryModel from '../../data/models/withLibraryModel';
 import './TableOfContents.scss';
 
-const ArticleList = ({ articles }) => {
+const ArticleList = ({ articles, priority = 'normal' }) => {
   return (<ul className="nyt-table">
     {articles.map((article, i) => (
       <li key={i} className="nyt-table-item">
         <Link to={`/article/${article.id}`}>
-          <Button>{article.title}</Button>
+          <Button priority={priority}>{article.title}</Button>
         </Link>
       </li>
     ))}
@@ -55,7 +55,7 @@ const TableOfContentsView = ({
           style={{width: '100%'}}
         />
         <p className="nyt-progress-description">
-          You've read {totalArticlesRead} of {contents.length} letters.
+          You've discovered {totalArticlesRead} of {contents.length} letters.
          Read them all to unlock a reward.</p>
       </PageWidthContainer>
     </Notice>
@@ -66,7 +66,8 @@ const TableOfContentsView = ({
       {!unreadArticles.length && <ActionPanel /> }
 
       {readArticles.length > 0 && (<h2>Read</h2>)}
-      {readArticles.length > 0 && <ArticleList articles={readArticles} />}
+      {readArticles.length > 0 &&
+        <ArticleList articles={readArticles} priority={'low'} />}
     </PageWidthContainer>
   </Page>);
 };

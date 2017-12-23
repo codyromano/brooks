@@ -21,7 +21,7 @@ const withCountdown = (Component) => {
       this.updateInterval = setInterval(() => {
         const secondsLeft = this.getSecondsLeft();
 
-        if (secondsLeft > 0) {
+        if (secondsLeft >= 0) {
           this.setState({
             secondsLeft: this.getSecondsLeft()
           });

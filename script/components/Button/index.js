@@ -20,7 +20,7 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  highPriority: PropTypes.oneOf(['normal', 'high']),
+  highPriority: PropTypes.oneOf(['normal', 'high', 'low']),
   size: PropTypes.oneOf(['small', 'normal', 'large'])
 };
 
