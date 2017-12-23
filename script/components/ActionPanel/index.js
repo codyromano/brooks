@@ -46,7 +46,7 @@ class ActionPanel extends React.Component {
       model.requestNewArticle();
     }
     // TODO: Use router
-    window.location.hash = 'writing/foo';
+    window.location.hash = 'writing/';
   }
   render() {
     // TODO: Selectively show content for reward

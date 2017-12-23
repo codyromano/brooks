@@ -26,7 +26,7 @@ const App = () => (
         component={TableOfContents}
       />
       <Route
-        path="/writing/:articleId"
+        path="/writing/"
         exact={true}
         component={SplashScreen}
       />
