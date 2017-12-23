@@ -24,12 +24,6 @@ const AppView = ({
     nextArticleId
 }) => (
   <Page>
-    <Notice>
-      <PageWidthContainer>
-        <span>You've discovered {articleStats.totalArticlesRead} out of {articleStats.totalArticlesAvailable}  articles!</span>
-      </PageWidthContainer>
-    </Notice>
-
     <Header title={title} />
     <PageWidthContainer>
       <Image src={featuredImageSrc}/>

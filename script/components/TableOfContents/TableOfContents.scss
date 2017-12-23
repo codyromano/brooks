@@ -5,6 +5,16 @@
   margin: 0;
 }
 
+.nyt-progress-header {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.nyt-progress-description {
+  padding-top: 0;
+  margin-top: $row-padding-bottom / 2;
+}
+
 .nyt-table-item {
   list-style: none;
   padding-bottom: $row-padding-bottom;

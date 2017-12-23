@@ -14,3 +14,8 @@
 h1, h2, h3, h4, h5, p {
   font-family: NewYorkTimes;
 }
+
+p {
+  font-size: $font-normal;
+  line-height: 140%;
+}
