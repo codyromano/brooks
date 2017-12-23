@@ -5,6 +5,7 @@ import BrooksDataProvider from '../BrooksDataProvider';
 import Button from '../Button';
 import Header from '../Header';
 import Notice from '../Notice';
+import ActionPanel from '../ActionPanel';
 import Page, { PageWidthContainer } from '../Page';
 import withLibraryModel from '../../data/models/withLibraryModel';
 import './TableOfContents.scss';
@@ -59,8 +60,12 @@ const TableOfContentsView = ({
     </Notice>
 
     <PageWidthContainer>
-      <h2>Unread</h2>
-      <ArticleList articles={unreadArticles} />
+      {unreadArticles.length > 0 && <h2>Unread</h2>}
+      {unreadArticles.length > 0 && <ArticleList articles={unreadArticles} />}
+
+      {!unreadArticles.length &&
+        <ActionPanel />
+      }
 
       {readArticles.length > 0 && (<h2>Read</h2>)}
       {readArticles.length > 0 && <ArticleList articles={readArticles} />}
