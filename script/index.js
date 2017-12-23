@@ -6,6 +6,7 @@ import AppLogic from './components/AppLogic';
 import IntroPage from './components/Intro';
 import TableOfContents from './components/TableOfContents';
 import withLibraryModel from './data/models/withLibraryModel';
+import SplashScreen from './components/SplashScreen';
 
 
 // TODO: Rename 'AppLogic' to 'ArticleLogic'
@@ -23,6 +24,11 @@ const App = () => (
         path="/table-of-contents"
         exact={true}
         component={TableOfContents}
+      />
+      <Route
+        path="/writing/:articleId"
+        exact={true}
+        component={SplashScreen}
       />
       <Route path="/" component={IntroPage} />
     </Switch>

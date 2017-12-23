@@ -36,11 +36,11 @@ export default class Image extends React.Component {
     return (<img
       {...this.props}
       style={imageStyle}
-      className="nyt-featured-image"
     />);
   }
 }
 Image.defaultProps = {
+  className: 'nyt-featured-image',
   style: {
     transition: 'opacity ease 1s',
     maxWidth: '100%'
