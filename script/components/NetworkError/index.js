@@ -4,7 +4,7 @@ import SplashScreenView from '../SplashScreen/SplashScreenView';
 
 const NetworkError = ({ errorMessage }) => (
   <SplashScreenView
-    title="This is embarassing..."
+    title="This is embarrassing..."
     about={`My content server encountered a hiccup. Please reload and try again. If it keeps happening, let me know. 😊`}
   />
 );
