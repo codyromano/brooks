@@ -33,12 +33,16 @@ export default class BrooksDataProvider extends React.Component {
     window.fetch(endpoint).then(response => {
       return response.json();
 
-    }, networkError => {
+    }, (...info) => {
       this.setState({
-        errorMessage: networkError
+        errorMessage: 'The article server is down'
       });
-
     }).then(json => {
+
+      // TODO: This is gross
+      if (this.state.errorMessage) {
+        return;
+      }
 
       window.setTimeout(() => {
         this.setState({
@@ -71,6 +75,8 @@ export default class BrooksDataProvider extends React.Component {
     this.fetch(this.props.endpoint);
   }
   render() {
+    console.log('error: ', this.state.errorMessage);
+
     if (this.state.errorMessage) {
       const ErrorComponent = this.props.loadingErrorComponent;
 
