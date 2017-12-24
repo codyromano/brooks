@@ -1,6 +1,6 @@
 # Letters from David Brooks
 
-A Christmas present for my mom, who's a big fan of David Brooks. It's a simple web app that features a collection of Brooks' columns.
+![](https://i.imgur.com/iQqZYyQ.gif)
 
 ## Get started
 
