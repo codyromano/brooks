@@ -15,7 +15,6 @@ const withArticleContent = (Component) => {
   const WrappedWithArticle = (props) => {
     const articleId = props.match.params.articleId;
     const endpoint = getEndpoint('get-article-by-id', { id: articleId });
-    console.log(endpoint);
 
     // TODO: Create a fun and engaging between-articles loading experience?
     return (

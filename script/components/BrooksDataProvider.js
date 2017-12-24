@@ -76,8 +76,6 @@ export default class BrooksDataProvider extends React.Component {
     this.fetch(this.props.endpoint);
   }
   render() {
-    console.log('error: ', this.state.errorMessage);
-
     if (this.state.errorMessage) {
       const ErrorComponent = this.props.loadingErrorComponent;
 

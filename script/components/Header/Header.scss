@@ -1,5 +1,9 @@
 @import "../shared-styles/main.scss";
 
+h1 {
+  line-height: 130%;
+}
+
 .nyt-header {
   display: block;
   margin: $row-padding-bottom 0 $row-padding-bottom 0;

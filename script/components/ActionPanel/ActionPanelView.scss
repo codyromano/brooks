@@ -1,5 +1,6 @@
 @import '../shared-styles/main';
 
 .nyt-action-panel {
-
+  display: block;
+  margin: ($row-padding-bottom * 2) 0;
 }

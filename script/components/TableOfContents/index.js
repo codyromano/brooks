@@ -47,18 +47,9 @@ const TableOfContentsView = ({
 
     <Notice>
       <PageWidthContainer>
-        <h2 className="nyt-progress-header">
-          <strong>Reward progress: {completion}%</strong>
-        </h2>
-        <progress
-          min={0}
-          max={100}
-          value={completion}
-          style={{width: '100%'}}
-        />
         <p className="nyt-progress-description">
-          You've discovered {totalArticlesRead} of {contents.length} letters.
-         Read them all to unlock a reward.</p>
+          You've read {totalArticlesRead} of {contents.length} letters.
+         Read them all to reveal a reward.</p>
       </PageWidthContainer>
     </Notice>
 
