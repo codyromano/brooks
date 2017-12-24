@@ -7,6 +7,7 @@ import IntroPage from './components/Intro';
 import TableOfContents from './components/TableOfContents';
 import withLibraryModel from './data/models/withLibraryModel';
 import SplashScreen from './components/SplashScreen';
+import { BonusContentCutScene } from './components/CutScene';
 
 
 // TODO: Rename 'AppLogic' to 'ArticleLogic'
@@ -24,6 +25,11 @@ const App = () => (
         path="/table-of-contents"
         exact={true}
         component={TableOfContents}
+      />
+      <Route
+        path="/cut-scene"
+        exact={true}
+        component={BonusContentCutScene}
       />
       <Route
         path="/writing/"

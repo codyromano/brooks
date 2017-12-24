@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import NetworkError from './NetworkError';
 
 export default class BrooksDataProvider extends React.Component {
   static defaultProps = {
-    loadingErrorComponent: () => (<div>Error loading data</div>),
+    loadingErrorComponent: NetworkError,
     loadingComponent: () => (<div></div>),
     mockDelayOnDataReady: 0
   };

@@ -6,11 +6,6 @@ import { withRouter } from 'react-router-dom';
 import LoadingComponent from '../../components/ArticleLoading';
 import NetworkError from '../../components/NetworkError';
 
-const LoadingErrorComponent = () => (
-  <div>Whoops...there was a problem loading the article.
-    Please try again. If the problem persists, let me know. :)</div>
-);
-
 /**
 * HOC that injects article content
 */
