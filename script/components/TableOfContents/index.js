@@ -8,6 +8,7 @@ import Notice from '../Notice';
 import ActionPanel from '../ActionPanel';
 import { getEndpoint } from '../../utils/pathUtils';
 import Page, { PageWidthContainer } from '../Page';
+import NetworkError from '../NetworkError';
 import withLibraryModel from '../../data/models/withLibraryModel';
 import './TableOfContents.scss';
 
@@ -77,12 +78,11 @@ TableOfContentsView.propTypes = {
   totalArticlesVisible: PropTypes.number.isRequired
 };
 
-console.log(getEndpoint('table-of-contents'));
-
 const TableOfContents = ({ articleLibraryModel }) => (
   <BrooksDataProvider
     endpoint={getEndpoint('table-of-contents')}
     onDataReadyComponent={TableOfContentsView}
+    loadingErrorComponent={NetworkError}
     totalArticlesVisible={articleLibraryModel.getTotalArticlesVisible()}
     totalArticlesRead={articleLibraryModel.getTotalArticlesRead()}
     articlesReadMap={articleLibraryModel.getArticlesReadMap()}

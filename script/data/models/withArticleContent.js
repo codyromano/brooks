@@ -4,6 +4,7 @@ import BrooksDataProvider from '../../components/BrooksDataProvider';
 import { getEndpoint } from '../../utils/pathUtils';
 import { withRouter } from 'react-router-dom';
 import LoadingComponent from '../../components/ArticleLoading';
+import NetworkError from '../../components/NetworkError';
 
 const LoadingErrorComponent = () => (
   <div>Whoops...there was a problem loading the article.
@@ -25,7 +26,7 @@ const withArticleContent = (Component) => {
     return (
       <BrooksDataProvider
         endpoint={endpoint}
-        loadingErrorComponent={LoadingErrorComponent}
+        loadingErrorComponent={NetworkError}
         onDataReadyComponent={Component}
         {...props}
       />
