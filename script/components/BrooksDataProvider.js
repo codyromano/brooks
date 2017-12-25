@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import NetworkError from './NetworkError';
+import { fetchJSONWithTimeout } from '../utils/networkUtils';
 
 export default class BrooksDataProvider extends React.Component {
   static defaultProps = {
     loadingErrorComponent: NetworkError,
+    loadErrorTimeout: 8000,
     loadingComponent: () => (<div></div>),
     mockDelayOnDataReady: 0
   };
@@ -15,6 +17,7 @@ export default class BrooksDataProvider extends React.Component {
       PropTypes.node.isRequired,
       PropTypes.func.isRequired
     ]).isRequired,
+    loadingErrorTimeout: PropTypes.number,
     loadingErrorComponent: PropTypes.func,
     loadingComponent: PropTypes.func,
     mockDelayOnDataReady: PropTypes.number
@@ -26,37 +29,15 @@ export default class BrooksDataProvider extends React.Component {
       errorMessage: null,
       data: null
     };
+
     this.fetch = this.fetch.bind(this);
   }
 
   fetch(endpoint) {
-    // TODO: Use async / await (requires Babel changes)
-    window.fetch(endpoint).then(response => {
-      return response.json();
-
-    }, (...info) => {
-      this.setState({
-        errorMessage: 'The article server is down'
-      });
-    }).then(json => {
-
-      // TODO: This is gross
-      if (this.state.errorMessage) {
-        return;
-      }
-
-      window.setTimeout(() => {
-        this.setState({
-          data: json,
-          errorMessage: null
-        });
-      }, this.props.mockDelayOnDataReady);
-
-    }, jsonParseError => {
-      this.setState({
-        errorMessage: jsonParseError
-      });
-    });
+    fetchJSONWithTimeout(endpoint, this.props.loadErrorTimeout).then(
+      json => this.setState({ data: json, errorMessage: null }),
+      () => this.setState({ data: null, errorMessage: 'Network error' })
+    );
   }
   componentWillReceiveProps(newProps) {
     if (this.mounted) {
