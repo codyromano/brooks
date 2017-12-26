@@ -42,5 +42,5 @@ webpack -p
 Permanently run a web server that serves static conent from the Webpack public folder:
 ```
 screen
-/usr/bin/forever /usr/bin/http-server /root/brooks/public/ -p 80
+/usr/bin/forever start /usr/bin/http-server /root/brooks/public/ -p 80
 ```
